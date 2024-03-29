@@ -14,13 +14,13 @@ namespace ImageUploader
             app.UseStaticFiles();
             app.UseStaticFiles(new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages")),
+                FileProvider = new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "UploadedImages")),
                 RequestPath = "/UploadedImages"
             });
 
-            app.MapGet("/", async context =>  
+            app.MapGet("/", async context =>
             {
-                 context.Response.Redirect("/Index.html");
+                context.Response.Redirect("/Index.html");
             });
 
             var Images = new List<Models.Image>();
@@ -30,7 +30,7 @@ namespace ImageUploader
                 var File = Form.Files.GetFile("image");
                 var Title = Form["title"];
 
-                if (File is null || File.Length == 0 )
+                if (File is null || File.Length == 0)
                 {
                     return Results.NotFound("No File Uploaded");
                 }
@@ -45,7 +45,7 @@ namespace ImageUploader
 
                 var ImageId = Guid.NewGuid().ToString();
                 var FileName = ImageId + FileExtension;
-                var DirectoryPath = Path.Combine(Directory.GetCurrentDirectory(), "UploadedImages");  
+                var DirectoryPath = Path.Combine(app.Environment.ContentRootPath, "wwwroot", "UploadedImages");
                 var FilePath = Path.Combine(DirectoryPath, FileName);
 
                 using (var stream = new FileStream(FilePath, FileMode.Create))

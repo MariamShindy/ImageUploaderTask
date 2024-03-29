@@ -11,7 +11,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="UploadedImages\" />
+    <Folder Include="wwwroot\UploadedImages\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\UploadedImages\54f6a3e4-e167-4bb3-a175-d133d2fbcff9.png" />
+    <None Include="wwwroot\UploadedImages\b9812c58-25da-4a63-97af-3d20507f4dd3.png" />
+    <None Include="wwwroot\UploadedImages\fa2fdb85-7dbc-4ebe-a416-1369d47d8b25.png" />
   </ItemGroup>
 
 </Project>
