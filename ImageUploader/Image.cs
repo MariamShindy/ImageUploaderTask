@@ -1,4 +1,4 @@
-﻿namespace ImageUploader.Models
+﻿namespace ImageUploader
 {
     public class Image
     {

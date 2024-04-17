@@ -1,13 +1,6 @@
+using ImageUploader;
 using Microsoft.Extensions.FileProviders;
-using static System.Net.Mime.MediaTypeNames;
-
-namespace ImageUploader
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+var builder = WebApplication.CreateBuilder(args);
             builder.Services.AddAntiforgery();
             var app = builder.Build();
 
@@ -23,7 +16,7 @@ namespace ImageUploader
                 context.Response.Redirect("/Index.html");
             });
 
-            var Images = new List<Models.Image>();
+            var Images = new List<Image>();
             app.MapPost("/upload", async (HttpContext context) =>
             {
                 var Form = await context.Request.ReadFormAsync();
@@ -54,7 +47,7 @@ namespace ImageUploader
                 }
 
                 //Create object from anonymous type
-                var UploadedImage = new Models.Image
+                var UploadedImage = new Image
                 {
                     ImageId = ImageId,
                     Title = Title,
@@ -89,6 +82,4 @@ namespace ImageUploader
             }
             );
             app.Run();
-        }
-    }
-}
+    
